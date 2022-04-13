@@ -1,0 +1,8 @@
+Hi $name ,
+
+Order is on the way,
+Your order item with transaction number $invoice_no is being packed and on the way. 
+For more details call us on the given number.
+
+Regards,
+Norton

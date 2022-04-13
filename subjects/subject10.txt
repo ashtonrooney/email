@@ -1,0 +1,1 @@
+$name Receipt of Purchase $invoice_no

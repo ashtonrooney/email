@@ -1,0 +1,5 @@
+Hello $name,
+Thanks for purchasing from us.
+Your Transaction No: $invoice_no 
+For more details please call us on and check the given pdf below.
+Regards,

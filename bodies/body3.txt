@@ -1,0 +1,8 @@
+Hi $name,
+
+Thanking you  for order 
+Your product with transaction number $invoice_no is being shipped. 
+For more details check the given pdf below.
+
+Regards,
+Norton Bill Team

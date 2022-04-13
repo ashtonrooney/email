@@ -1,0 +1,1 @@
+$name We value your your purchase of $invoice_no 

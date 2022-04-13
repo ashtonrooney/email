@@ -1,0 +1,5 @@
+Hi $name
+your order is on the way with refernce id $invoice_no
+if you want to cancel the order please call us
+Thankyou
+Bill info

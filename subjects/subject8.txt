@@ -1,0 +1,1 @@
+$name purchase is sucessful wih In. No. $invoice_no

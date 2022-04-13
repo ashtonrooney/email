@@ -1,0 +1,7 @@
+Hello $name,
+
+Thanking you  for purchase.
+Your product with transaction number $invoice_no is being shipped. 
+For more details check the given pdf below.
+Regards,
+Norton
