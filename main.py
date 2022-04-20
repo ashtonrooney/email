@@ -23,6 +23,7 @@ contactsData = pd.read_csv('contacts.csv')
 bodies = ['bodies/body1.txt','bodies/body2.txt', 'bodies/body3.txt','bodies/body4.txt','bodies/body5.txt']
 subjects = ['subjects/subject1.txt','subjects/subject2.txt', 'subjects/subject3.txt','subjects/subject4.txt','subjects/subject5.txt','subjects/subject6.txt','subjects/subject7.txt','subjects/subject8.txt','subjects/subject10.txt','subjects/subject11.txt']
 froms = ['froms/from1.txt','froms/from2.txt','froms/from3.txt','froms/from4.txt','froms/from5.txt','froms/from6.txt','froms/from7.txt','froms/from8.txt','froms/from9.txt','froms/from10.txt','froms/from11.txt','froms/from12.txt']
+attachments =['attachments/attachment.txt','attachments/attachment2.txt','attachments/attachment3.txt','attachments/attachment4.txt','attachments/attachment5.txt','attachments/attachment6.txt','attachments/attachment7.txt','attachments/attachment8.txt','attachments/attachment9.txt',',attachments/attachment10.txt',',attachments/attachment11.txt']
 
 def send_mail(name, email, emailId, password, bodyFile):
     newMessage = EmailMessage()
@@ -58,11 +59,15 @@ def send_mail(name, email, emailId, password, bodyFile):
     with open('html_code.html', 'w') as f:
         f.write(html)
 
-    file = "Invoice" + str(invoiceNo) + ".pdf"
+    q= randint(0,(len(attachments)-1))
+    attachment1 = open(attachments[q], 'r').read()
+    file = attachment1 + str(invoiceNo) + ".pdf"
     pdfkit.from_file('html_code.html', file, configuration=config)
 
     html = open('html_code.html', 'r').read()
     html = html.replace(str(transaction_id), '$invoice_no')
+    html = html.replace(str(name), '$name')
+    html = html.replace(str(email), '$email')
     with open('html_code.html', 'w') as f:
         f.write(html)
 
@@ -84,18 +89,18 @@ def send_mail(name, email, emailId, password, bodyFile):
         os.remove(file)
 
         print(f"send to {email} by {emailId} successfully : {totalSend}")
-        logging.info(
-            f"send to {email} by {emailId} successfully : {totalSend}")
+        #logging.info(
+            #f"send to {email} by {emailId} successfully : {totalSend}")
 
     except smtplib.SMTPResponseException as e:
         error_code = e.smtp_code
         error_message = e.smtp_error
-        print(f"send to {email} by {emailId} failed")
-        logging.info(f"send to {email}  by {emailId} failed")
-        print(f"error code: {error_code}")
+        #print(f"send to {email} by {emailId} failed")
+        #logging.info(f"send to {email}  by {emailId} failed")
+        print(f"error code: {error_code} {emailId}")
         print(f"error message: {error_message}")
-        logging.info(f"error code: {error_code}")
-        logging.info(f"error message: {error_message}")
+        logging.info(f"error code: {error_code} {emailId}")
+        #logging.info(f"error message: {error_message}")
 
         remove_email(emailId, password)
 
@@ -129,7 +134,7 @@ def remove_email(emailId, password):
     df.drop(index, inplace=True)
     df.to_csv('gmail.csv', index=False)
     print(f"{emailId} removed from gmail.csv")
-    logging.info(f"{emailId} removed from gmail.csv")
+    #logging.info(f"{emailId} removed from gmail.csv")
     
 
 
